@@ -1,34 +1,73 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/satscottfoster/jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: jx-rocks
+  environmentGitOwner: satscottfoster
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: jx-rocks
   provider: gke
-  zone: ""
-gitops: true
+  zone: us-east1
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
   domain: ""
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
-  logs:
+  backup:
     enabled: false
+    url: ""
+  logs:
+    enabled: true
     url: ""
   reports:
-    enabled: false
+    enabled: true
     url: ""
   repository:
-    enabled: false
+    enabled: true
     url: ""
+vault: {}
+velero: {}
 versionStream:
-  ref: "master"
+  ref: master
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
